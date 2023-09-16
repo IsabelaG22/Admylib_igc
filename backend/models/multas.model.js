@@ -13,4 +13,4 @@ const MultaSchema = new mongoose.Schema({
 });
 
 const multas = mongoose.model('multas', MultaSchema)
-module.exports = multas
+module.exports = multas;
