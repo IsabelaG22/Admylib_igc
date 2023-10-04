@@ -22,7 +22,7 @@ exports.buscarEditorial = async (req, res) => {
     if (busquedaEditorial.respuesta === false) {
       res.status(404).json({ error: 'No se encontro la editorial' });
     } else {
-      res.status(200).json({ Editorial: busquedaEditorial });
+      res.status(200).json({ Editorial: 'Editorial econtrada' + busquedaEditorial });
     }
   } catch (err) {
     res.status(500).json({ error: err });
@@ -36,7 +36,7 @@ exports.eliminarEditorial = async (req, res) => {
     if (eliminarEditorial.respuesta === false) {
       res.status(404).json({ error: 'No se logro eliminar la editorial' });
     } else {
-      res.status(200).json({Editorial: eliminarEditorial});
+      res.status(200).json({Editorial:  'Se elimino exitosamente' });
     }
   } catch (err) {
     res.status(500).json({ error: err });
