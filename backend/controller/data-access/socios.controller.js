@@ -21,17 +21,59 @@ exports.guardar = async (datos) => {
 };
 
 exports.buscar = async (_filtros, _opciones) => {
+  try{ 
   const sociosBuscar = await SociosModel.find(_filtros, _opciones);
-  return sociosBuscar;
+    if(sociosBuscar){
+      return {
+        respuesta: true,
+        Socio: sociosBuscar,
+      };
+    } else {
+      return {
+        respuesta: false,
+        mensaje: 'No se pudo encontrar el socio',
+      };
+    }
+  } catch (err) {
+    return err;
+  }
 };
 
 exports.eliminar = async (datos) => {
+  try{ 
   const sociosEliminar = await SociosModel.findOneAndDelete(datos);
-  return sociosEliminar;
-};
+  if (sociosEliminar) {
+    return {
+      respuesta: true,
+      Socio: sociosEliminar,
+    };
+  } else {
+    return {
+      respuesta: false,
+      mensaje: 'No se pudo eliminar al socio',
+    };
+  }
+} catch (err) {
+  return err;
+}
+ };
 
 exports.actualizar = async (id, datos) => {
+  try{
   const sociosActualizar = await SociosModel.findOneAndUpdate(id, datos);
-  return sociosActualizar;
+  if (sociosActualizar) {
+    return {
+      respuesta: true,
+      Socio: sociosActualizar,
+    };
+  } else {
+    return {
+      respuesta: false,
+      mensaje: 'No se pudo actualizar al socio',
+    };
+  }
+} catch (err) {
+  return err;
+}
 };
 

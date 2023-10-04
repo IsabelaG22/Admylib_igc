@@ -1,33 +1,66 @@
 const dataSocio = require('../data-access/socios.controller');
 
 exports.guardar = async (req, res) => {
-  const datos = req.body;
-  const buscarExistencia = await dataSocio.buscar({cedula: req.body.cedula});
-  if (buscarExistencia == req.body.cedula) {
-    res.status(500).json({socio: 'usuario ya existe '});
-  } else {
-    const nuevoSocios = await dataSocio.guardar(datos);
-    res.status(200).json({socio: 'socio guardado con exito' + nuevoSocios});
+  try {
+    const datos = req.body;
+    const buscarExistencia = await dataSocio.buscar({ cedula: req.body.cedula });
+
+    if (buscarExistencia) {
+      res.status(500).json({ socio: 'El usuario ya existe' });
+    } else {
+      const nuevoSocio = await dataSocio.guardar(datos);
+      res.status(200).json({ socio: 'Socio guardado con éxito', nuevoSocio });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Error al procesar la solicitud' });
   }
 };
 
 exports.buscar = async (req, res) => {
+  try{
   const nombre = {nombre: req.body.nombre};
   const busquedaSocio = await dataSocio.buscar(nombre);
-  res.status(200).json({socio: busquedaSocio});
+  if(busquedaSocio.respuesta === false){
+    res.status(404).json({error: 'No se encontro el socio'});
+  }else{
+    res.status(200).json({socio: 'Socio encontrado'+ busquedaSocio});
+  }
+  }catch (err){
+    res.status(500).json({ error: err });
+  }
+  
 };
 
 exports.eliminar = async (req, res) => {
+  try{
   const id= {_id: req.params.id};
   const eliminarSocio = await dataSocio.eliminar(id);
+  if(eliminarSocio.respuesta === false){
+    
+  res.status(404).json({socio: 'No se logro eliminar el socio'});
+
+  }else{
   res.status(200).json({socio: 'se elimino con exito ' + eliminarSocio.nombre});
+
+  }
+   }catch (err) {
+    res.status(500).json({ error: err });
+  }
 };
 
 exports.actualizar = async (req, res) => {
+  try{
   const id = {_id: req.params.id};
   const actualizar = req.body;
   await dataSocio.actualizar(id, actualizar);
-  res.status(200).json({socio: 'se actualizo con exito'});
+  if(id.respuesta === false){
+    res.status(404).json({socio: 'No se logro actualizar'});
+  }else{
+    res.status(200).json({socio: 'se actualizo con exito'});
+  }
+   } catch (err) {
+    res.status(500).json({error: err});
+  }
 };
 
 exports.index = (req, res) => {
