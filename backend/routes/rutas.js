@@ -7,6 +7,32 @@ const express = require('express');
 const router = express.Router();
 
 // SOCIOS
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *     User:
+ *       type: object
+ *       propieties:
+ *         correo:
+ *           type: string
+ *           description: el correo del usuario
+ *         contrasena:
+ *           type: string
+ *           description: contrasena del usuario
+ *         rol:
+ *           type: string
+ *           description: rol de usuario, sea cliente o tattoo artist
+ *       required:
+ *         - correo
+ *         - contrasena
+ *         - rol
+ *       example:
+ *         correo: alan@gmail.com
+ *         contrasena: 123456789
+ *         rol: cliente
+ *
+ */
 router.get('/index', funcionesSocio.index);
 router.post('/agregarSocio', funcionesSocio.guardar);
 router.get('/buscarSocio', funcionesSocio.buscar);
@@ -34,4 +60,4 @@ router.get('/buscarReserva', funcionesReserva.buscarReservas);
 router.get('/buscarReservaById/:id', funcionesReserva.buscarReservaById);
 router.get('/eliminarReserva/:id', funcionesReserva.eliminarReserva);
 router.post('/actualizarReserva/:id', funcionesReserva.actualizarReserva);
-module.exports= router;
+module.exports = router;
