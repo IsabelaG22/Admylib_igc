@@ -8,5 +8,5 @@ const IdiomasSchema = new Mongoose.Schema({
   },
 });
 
-const idiomas = Mongoose.model('idomas', IdiomasSchema);
+const idiomas = Mongoose.model('idiomas', IdiomasSchema);
 module.exports = idiomas;

@@ -5,27 +5,27 @@ exports.guardarEditoriaL = async (req, res) => {
     const datos = req.body;
     const nuevaEditorial = await DataEditorial.guardarEditorial(datos);
     if (nuevaEditorial.respuesta === false) {
-      res.status(404).json({ error: 'No se registro editorial' });
+      res.status(404).json({error: 'No se registro editorial'});
     } else {
-      res.status(200).json({ Editorial: nuevaEditorial });
+      res.status(200).json({Editorial: nuevaEditorial});
     }
   } catch (err) {
-    res.status(500).json({ error: err });
+    res.status(500).json({error: err});
   }
 };
 
 
 exports.buscarEditorial = async (req, res) => {
   try {
-    const nombre = { nombreEditorial: req.body.nombreEditorial };
-    const busquedaEditorial = await DataEditorial.buscarEditorial(nombre);
+    // const nombre = {nombreEditorial: req.body.nombreEditorial};
+    const busquedaEditorial = await DataEditorial.buscarEditorial();
     if (busquedaEditorial.respuesta === false) {
-      res.status(404).json({ error: 'No se encontro la editorial' });
+      res.status(404).json({error: 'No se encontro la editorial'});
     } else {
-      res.status(200).json({ Editorial: 'Editorial econtrada' + busquedaEditorial });
+      res.status(200).json({Editorial: 'Editorial econtrada', resultado: busquedaEditorial});
     }
   } catch (err) {
-    res.status(500).json({ error: err });
+    res.status(500).json({error: err});
   }
 };
 
@@ -34,12 +34,12 @@ exports.eliminarEditorial = async (req, res) => {
     const id = req.params.id;
     const eliminarEditorial = await DataEditorial.eliminarEditorial(id);
     if (eliminarEditorial.respuesta === false) {
-      res.status(404).json({ error: 'No se logro eliminar la editorial' });
+      res.status(404).json({error: 'No se logro eliminar la editorial'});
     } else {
-      res.status(200).json({Editorial:  'Se elimino exitosamente' });
+      res.status(200).json({Editorial: 'Se elimino exitosamente'});
     }
   } catch (err) {
-    res.status(500).json({ error: err });
+    res.status(500).json({error: err});
   }
 };
 

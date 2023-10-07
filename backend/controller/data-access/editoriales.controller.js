@@ -24,10 +24,7 @@ exports.buscarEditorial = async (_filtro, _opciones) => {
   try {
     const buscarEditorial = await EditorialesModel.find(_filtro, _opciones);
     if (buscarEditorial) {
-      return {
-        respuesta: true,
-        editorial: buscarEditorial,
-      };
+      return buscarEditorial;
     } else {
       return {
         respuesta: false,

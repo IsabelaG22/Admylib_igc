@@ -7,16 +7,14 @@ const ReservaSchema = new mongoose.Schema({
   },
   fechaRetiro: {
     type: Date,
-    required: [true, 'Ingresa fecha qeu va reclamar el libro '],
+    required: [true, 'Ingresa fecha que va reclamar el libro '],
   },
   idUsuario: {
     type: String,
-    ref: 'socios',
     required: [true, 'Ingrese usuario responsable de la reserva'],
   },
   idLibro: {
     type: String,
-    ref: 'libros',
     required: [true, 'Ingrese id libro prestado'],
   },
 });

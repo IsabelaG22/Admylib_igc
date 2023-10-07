@@ -6,20 +6,20 @@ const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
-//SOCIOS
+// SOCIOS
 router.get('/index', funcionesSocio.index);
 router.post('/agregarSocio', funcionesSocio.guardar);
 router.get('/buscarSocio', funcionesSocio.buscar);
 router.get('/eliminarSocio/:id', funcionesSocio.eliminar);
 router.post('/actualizarSocio/:id', funcionesSocio.actualizar);
 
-//EDITORIALES
+// EDITORIALES
 router.post('/agregarEditorial', funcionesEditoriales.guardarEditoriaL);
 router.get('/buscarEditorial', funcionesEditoriales.buscarEditorial);
 router.get('/eliminarEditorial/:id', funcionesEditoriales.eliminarEditorial);
 router.post('/actualizarEditorial/:id', funcionesEditoriales.actualizarEditorial);
 
-//PRESTAMOS
+// PRESTAMOS
 router.post('/agregarPrestamo', funcionesPrestamos.guardarPrestamo);
 router.get('/buscarPrestamos', funcionesPrestamos.buscarPrestamos);
 router.get('/buscarPrestamoById/:id', funcionesPrestamos.buscarPrestamoById);
@@ -27,7 +27,7 @@ router.get('/eliminarPrestamo/:id', funcionesPrestamos.eliminarPrestamo);
 router.post('/actualizarPrestamo/:id', funcionesPrestamos.actualizarPrestamo);
 
 
-//RESERVA
+// RESERVA
 
 router.post('/agregarReserva', funcionesReserva.guardarReserva);
 router.get('/buscarReserva', funcionesReserva.buscarReservas);
