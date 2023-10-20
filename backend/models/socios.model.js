@@ -1,4 +1,6 @@
 const mongoose = require('../config/database');
+const {Schema} = mongoose;
+
 const SociosSchema = new mongoose.Schema({
   documento: {
     type: Number,
@@ -19,17 +21,20 @@ const SociosSchema = new mongoose.Schema({
     required: true,
   },
   reservas: {
-    type: String,
+    type: Schema.types.ObjectId,
+    ref: 'reservas',
     maxlength: 100,
     required: [true, 'Debe ingresar la reserva'],
   },
   prestamos: {
-    type: String,
+    type: Schema.types.ObjectId,
+    ref: 'prestamos',
     maxlength: 100,
     required: [true, 'Debe ingresar el prestamo'],
   },
   multas: {
-    type: String,
+    type: Schema.types.ObjectId,
+    ref: 'multas',
     maxlength: 100,
     required: [true, 'Debe ingresar multas'],
   },

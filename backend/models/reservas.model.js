@@ -1,4 +1,6 @@
 const mongoose = require('../config/database');
+const {Schema} = mongoose;
+
 
 const ReservaSchema = new mongoose.Schema({
   fechaReserva: {
@@ -10,11 +12,11 @@ const ReservaSchema = new mongoose.Schema({
     required: [true, 'Ingresa fecha que va reclamar el libro '],
   },
   idUsuario: {
-    type: String,
+    type: Schema.types.ObjectId,
     required: [true, 'Ingrese usuario responsable de la reserva'],
   },
   idLibro: {
-    type: String,
+    type: Schema.types.ObjectId,
     required: [true, 'Ingrese id libro prestado'],
   },
 });
