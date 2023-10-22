@@ -13,12 +13,12 @@ const LibrosSchema = new mongoose.Schema({
     maxLength: 200,
   },
   autor: {
-    type: Schema.types.ObjectId,
+    type: Schema.ObjectId,
     ref: 'autores',
     required: [true, 'Referencia el autor del libro'],
   },
   editorial: {
-    type: Schema.types.ObjectId,
+    type: Schema.ObjectId,
     ref: 'editoriales',
     required: [true, 'Referencia a la editorial del libro'],
   },
@@ -35,7 +35,7 @@ const LibrosSchema = new mongoose.Schema({
     required: [true, 'Ingrese las copias del libro disponibles'],
   },
   idioma: {
-    type: Schema.types.ObjectId,
+    type: Schema.ObjectId,
     ref: 'idiomas',
     required: [true, 'Referencia al idioma en que está el libro'],
   },

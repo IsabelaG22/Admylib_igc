@@ -2,6 +2,8 @@ const funcionesSocio = require('../controller/usecases/socios.controller');
 const funcionesEditoriales = require('../controller/usecases/editoriales.controller');
 const funcionesPrestamos = require('../controller/usecases/prestamos.controller');
 const funcionesReserva = require('../controller/usecases/reservas.controller');
+const libros = require('../controller/usecases/libros.controller');
+
 const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
@@ -33,7 +35,7 @@ router.get('/index', funcionesSocio.index);
  *         prestamos:
  *           type: string
  *           description: prestamos del usuario
- *         multas: 
+ *         multas:
  *           type: string
  *           description: multas del usuario
  *       required:
@@ -72,7 +74,7 @@ router.get('/index', funcionesSocio.index);
  *        description: nuevo Socio creado!
  */
 router.post('/agregarSocio', funcionesSocio.guardar);
-//OBTENER SOCIOS
+// OBTENER SOCIOS
 /**
  * @swagger
  * /buscarSocio:
@@ -90,7 +92,7 @@ router.post('/agregarSocio', funcionesSocio.guardar);
  *                 $ref: '#/components/schemas/socios'
  */
 router.get('/buscarSocio', funcionesSocio.buscar);
-//ELIMINAR SOCIO
+// ELIMINAR SOCIO
 /**
  * @swagger
  * /eliminarSocio/{id}:
@@ -108,10 +110,10 @@ router.get('/buscarSocio', funcionesSocio.buscar);
  *      200:
  *        description: Socio Eliminado
  *      400:
- *        description: No se pudo eliminar 
+ *        description: No se pudo eliminar
  */
 router.delete('/eliminarSocio/:id', funcionesSocio.eliminar);
-//ACTUALIZAR SOCIO
+// ACTUALIZAR SOCIO
 /**
  * @swagger
  * /actualizarSocio/{id}:
@@ -125,7 +127,7 @@ router.delete('/eliminarSocio/:id', funcionesSocio.eliminar);
  *          type: string
  *        required: true
  *        description: el id del usuario
- * 
+ *
  *    requestBody:
  *      required: true
  *      content:
@@ -186,7 +188,7 @@ router.put('/actualizarSocio/:id', funcionesSocio.actualizar);
  *        description: nueva editorial creada!
  */
 router.post('/agregarEditorial', funcionesEditoriales.guardarEditoriaL);
-//VER EDITORIALES
+// VER EDITORIALES
 /**
  * @swagger
  * /buscarEditorial:
@@ -204,7 +206,7 @@ router.post('/agregarEditorial', funcionesEditoriales.guardarEditoriaL);
  *                 $ref: '#/components/schemas/editoriales'
  */
 router.get('/buscarEditorial', funcionesEditoriales.buscarEditorial);
-//ELIMINAR EDITORIAL
+// ELIMINAR EDITORIAL
 /**
  * @swagger
  * /eliminarEditorial/{id}:
@@ -222,10 +224,10 @@ router.get('/buscarEditorial', funcionesEditoriales.buscarEditorial);
  *      200:
  *        description: editorial Eliminada
  *      400:
- *        description: No se pudo eliminar 
+ *        description: No se pudo eliminar
  */
 router.delete('/eliminarEditorial/:id', funcionesEditoriales.eliminarEditorial);
-//ACTUALIZAR EDITORIAL
+// ACTUALIZAR EDITORIAL
 /**
  * @swagger
  * /actualizarEditorial/{id}:
@@ -239,7 +241,7 @@ router.delete('/eliminarEditorial/:id', funcionesEditoriales.eliminarEditorial);
  *          type: string
  *        required: true
  *        description: el id de la editorial
- * 
+ *
  *    requestBody:
  *      required: true
  *      content:
@@ -294,7 +296,7 @@ router.put('/actualizarEditorial/:id', funcionesEditoriales.actualizarEditorial)
  *         idBibliotecologo: 12345678934
  *         idUsuario: 12345678234
  *         idLibro: 2345623456
- *         idMulta: 
+ *         idMulta:
  *
  */
 /**
@@ -315,7 +317,7 @@ router.put('/actualizarEditorial/:id', funcionesEditoriales.actualizarEditorial)
  *        description: nuevo prestamo creado!
  */
 router.post('/agregarPrestamo', funcionesPrestamos.guardarPrestamo);
-//VER PRESTAMOS
+// VER PRESTAMOS
 /**
  * @swagger
  * /buscarPrestamos:
@@ -334,7 +336,7 @@ router.post('/agregarPrestamo', funcionesPrestamos.guardarPrestamo);
  */
 router.get('/buscarPrestamos', funcionesPrestamos.buscarPrestamos);
 router.get('/buscarPrestamoById/:id', funcionesPrestamos.buscarPrestamoById);
-//ELIMINAR PRESTAMO
+// ELIMINAR PRESTAMO
 /**
  * @swagger
  * /eliminarPrestamo/{id}:
@@ -352,10 +354,10 @@ router.get('/buscarPrestamoById/:id', funcionesPrestamos.buscarPrestamoById);
  *      200:
  *        description: prestamo Eliminado
  *      400:
- *        description: No se pudo eliminar 
+ *        description: No se pudo eliminar
  */
 router.delete('/eliminarPrestamo/:id', funcionesPrestamos.eliminarPrestamo);
-//ACTUALIZAR PRESTAMO
+// ACTUALIZAR PRESTAMO
 /**
  * @swagger
  * /actualizarPrestamo/{id}:
@@ -369,7 +371,7 @@ router.delete('/eliminarPrestamo/:id', funcionesPrestamos.eliminarPrestamo);
  *          type: string
  *        required: true
  *        description: el id del prestamo
- * 
+ *
  *    requestBody:
  *      required: true
  *      content:
@@ -436,7 +438,7 @@ router.put('/actualizarPrestamo/:id', funcionesPrestamos.actualizarPrestamo);
  *        description: nueva reserva creada!
  */
 router.post('/agregarReserva', funcionesReserva.guardarReserva);
-//VER RESERVAS
+// VER RESERVAS
 /**
  * @swagger
  * /buscarReserva:
@@ -455,7 +457,7 @@ router.post('/agregarReserva', funcionesReserva.guardarReserva);
  */
 router.get('/buscarReserva', funcionesReserva.buscarReservas);
 router.get('/buscarReservaById/:id', funcionesReserva.buscarReservaById);
-//ELIMINAR RESERVA
+// ELIMINAR RESERVA
 /**
  * @swagger
  * /eliminarReserva/{id}:
@@ -473,10 +475,10 @@ router.get('/buscarReservaById/:id', funcionesReserva.buscarReservaById);
  *      200:
  *        description: reserva Eliminada
  *      400:
- *        description: No se pudo eliminar 
+ *        description: No se pudo eliminar
  */
 router.delete('/eliminarReserva/:id', funcionesReserva.eliminarReserva);
-//ACTUALIZAR RESERVA
+// ACTUALIZAR RESERVA
 /**
  * @swagger
  * /actualizarReserva/{id}:
@@ -490,7 +492,7 @@ router.delete('/eliminarReserva/:id', funcionesReserva.eliminarReserva);
  *          type: string
  *        required: true
  *        description: el id de la Reserva
- * 
+ *
  *    requestBody:
  *      required: true
  *      content:
@@ -503,6 +505,132 @@ router.delete('/eliminarReserva/:id', funcionesReserva.eliminarReserva);
  *        description: Reserva Actualizado
  *      400:
  *        description: No se pudo Actualizar
+ */
+
+
+// MODULO LIBROS------------------------------------------------------------------------------------------------------
+
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *   Libros:
+ *    type: object
+ *    properties:
+ *     isbn:
+ *      type: Number
+ *      description: nombre isbn
+ *     titulo:
+ *      type: string
+ *      description: ingresa el titulo
+ *     autor:
+ *      type: string
+ *      description: ingresa el autor
+ *     editorial:
+ *      type: string
+ *      description: nombre de la editorial
+ *     materias:
+ *      type: array
+ *      description: ingrese el nombre de la materia
+ *     fechaPublicacion:
+ *      type: Date
+ *      description: ingrese una fecha publicacion
+ *     copiasDisponibles:
+ *      type: Number
+ *      description: Ingrese numero de copias ,
+ *     idioma:
+ *      type: string
+ *      description: idioma,
+ */
+
+router.post('/registrarlibro', libros.creaLibros);
+
+/**
+ * @swagger
+ * /api/registrarlibro:
+ *  post:
+ *    summary: create new libro
+ *    tags: [libros]
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            $ref: '#/components/schemas/libros'
+ *    responses:
+ *      200:
+ *        description: se creo con exito
+ */
+
+router.get('/listarLibro', libros.find);
+
+/**
+ * @swagger
+ * /api/listarLibro:
+ *  get:
+ *    summary: return all libros
+ *    tags: [libros]
+ *    responses:
+ *      200:
+ *        description: todos los libros
+ *        content:
+ *        application/json:
+ *          schema:
+ *            type: array
+ *            items:
+ *              $ref: '#/components/schemas/libros'
+ */
+
+router.put('/actualizarLibro/:id', libros.update);
+
+/**
+ * @swagger
+ * /api/actualizarLibro/{id}:
+ *  put:
+ *    summary: update libros
+ *    tags: [libros]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: usar el id
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            $ref: '#/components/schemas/libros'
+ *    responses:
+ *      200:
+ *        description: se actualizo el libro
+ *      404:
+ *        description: el libro no se actualizo
+ */
+
+router.delete('/eliminarL/:id', libros.eliminarL); // get para hacer busquedas
+
+/**
+ * @swagger
+ * /api/eliminarL/{id}:
+ *  delete:
+ *    summary: eliminar libro
+ *    tags: [libros]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: usar el id
+ *    responses:
+ *      200:
+ *        description: se elimino el libro
+ *      404:
+ *        description: libro no eliminado
  */
 router.put('/actualizarReserva/:id', funcionesReserva.actualizarReserva);
 module.exports = router;

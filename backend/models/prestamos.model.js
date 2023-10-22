@@ -12,22 +12,22 @@ const PrestamoSchema = new mongoose.Schema({
     required: [true, 'Ingresa fecha devolución prestamo'],
   },
   idBibliotecologo: {
-    type: Schema.types.ObjectId,
+    type: Schema.ObjectId,
     ref: 'bibliotecologos',
     required: [true, 'Ingresa Bibliotecologo encargado del prestamo'],
   },
   idUsuario: {
-    type: Schema.types.ObjectId,
+    type: Schema.ObjectId,
     ref: 'socios',
     required: [true, 'Ingresa Usuario encargado del prestamo'],
   },
   idLibro: {
-    type: Schema.types.ObjectId,
+    type: Schema.ObjectId,
     ref: 'libros',
     required: [true, 'Ingresa id libro del prestamo'],
   },
   idMulta: {
-    type: Schema.types.ObjectId, // identificador unico de un documento
+    type: Schema.ObjectId, // identificador unico de un documento
     ref: 'multas', // referencia base de datos
   },
 });

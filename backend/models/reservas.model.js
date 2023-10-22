@@ -12,11 +12,11 @@ const ReservaSchema = new mongoose.Schema({
     required: [true, 'Ingresa fecha que va reclamar el libro '],
   },
   idUsuario: {
-    type: Schema.types.ObjectId,
+    type: Schema.ObjectId,
     required: [true, 'Ingrese usuario responsable de la reserva'],
   },
   idLibro: {
-    type: Schema.types.ObjectId,
+    type: Schema.ObjectId,
     required: [true, 'Ingrese id libro prestado'],
   },
 });

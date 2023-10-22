@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const fs = require('fs');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -26,8 +27,11 @@ const swaggerSpec = {
   apis: [`${__dirname}/backend/routes/*.js`],
 };
 
-
-
+const contenido = 'Este es el contenido de mi nuevo documento';
+fs.writeFile('./backend/files/logs/nuevo_documento.txt', contenido, (error) =>{
+  if (error) throw error;
+  console.log('Archivo creado correctamente!!!!');
+});
 
 
 app.use(morgan('dev'));

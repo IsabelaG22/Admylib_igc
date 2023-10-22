@@ -21,19 +21,19 @@ const SociosSchema = new mongoose.Schema({
     required: true,
   },
   reservas: {
-    type: Schema.types.ObjectId,
+    type: Schema.ObjectId,
     ref: 'reservas',
     maxlength: 100,
     required: [true, 'Debe ingresar la reserva'],
   },
   prestamos: {
-    type: Schema.types.ObjectId,
+    type: Schema.ObjectId,
     ref: 'prestamos',
     maxlength: 100,
     required: [true, 'Debe ingresar el prestamo'],
   },
   multas: {
-    type: Schema.types.ObjectId,
+    type: Schema.ObjectId,
     ref: 'multas',
     maxlength: 100,
     required: [true, 'Debe ingresar multas'],
