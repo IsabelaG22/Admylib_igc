@@ -72,4 +72,3 @@ exports.actualizarPrestamo = async (req, res) => {
   }
 };
 
-

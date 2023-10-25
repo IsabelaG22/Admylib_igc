@@ -1,0 +1,834 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API de Biblioteca",
+    "description": "API para una biblioteca",
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Servidor de desarrollo"
+    }
+  ],
+  "paths": {
+    "/agregarSocio": {
+      "post": {
+        "summary": "Crear un nuevo socio",
+        "tags": [
+          "socios"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/socios"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Nuevo socio creado!"
+          }
+        }
+      }
+    },
+    "/buscarSocio": {
+      "get": {
+        "summary": "Mostrar todos los socios",
+        "tags": [
+          "socios"
+        ],
+        "responses": {
+          "200": {
+            "description": "Socios encontrados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/socios"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/eliminarSocio/{id}": {
+      "delete": {
+        "summary": "Eliminar Socio",
+        "tags": [
+          "socios"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "El ID del usuario"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Socio eliminado"
+          },
+          "400": {
+            "description": "No se pudo eliminar"
+          }
+        }
+      }
+    },
+    "/actualizarSocio/{id}": {
+      "put": {
+        "summary": "Actualizar Socio",
+        "tags": [
+          "socios"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "El ID del usuario"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/socios"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Socio actualizado"
+          },
+          "400": {
+            "description": "No se pudo actualizar"
+          }
+        }
+      }
+    },
+    "/agregarEditorial": {
+      "post": {
+        "summary": "Crear una editorial",
+        "tags": [
+          "editoriales"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/editoriales"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Nueva editorial creada!"
+          }
+        }
+      }
+    },
+    "/buscarEditorial": {
+      "get": {
+        "summary": "Mostrar todas las editoriales",
+        "tags": [
+          "editoriales"
+        ],
+        "responses": {
+          "200": {
+            "description": "Editoriales encontradas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/editoriales"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/eliminarEditorial/{id}": {
+      "delete": {
+        "summary": "Eliminar Editorial",
+        "tags": [
+          "editoriales"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "El ID de la editorial"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Editorial eliminada"
+          },
+          "400": {
+            "description": "No se pudo eliminar"
+          }
+        }
+      }
+    },
+    "/actualizarEditorial/{id}": {
+      "put": {
+        "summary": "Actualizar Editorial",
+        "tags": [
+          "editoriales"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "El ID de la editorial"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/editoriales"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Editorial actualizada"
+          },
+          "400": {
+            "description": "No se pudo actualizar"
+          }
+        }
+      }
+    },
+    "/agregarPrestamo": {
+      "post": {
+        "summary": "Crear un préstamo",
+        "tags": [
+          "prestamos"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/prestamos"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Nuevo préstamo creado!"
+          }
+        }
+      }
+    },
+    "/buscarPrestamos": {
+      "get": {
+        "summary": "Mostrar todos los préstamos",
+        "tags": [
+          "prestamos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Préstamos encontrados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/prestamos"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/buscarPrestamoById/{id}": {
+      "get": {
+        "summary": "Buscar préstamo por ID",
+        "tags": [
+          "prestamos"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "El ID del préstamo"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Préstamo encontrado"
+          },
+          "404": {
+            "description": "Préstamo no encontrado"
+          }
+        }
+      }
+    },
+    "/eliminarPrestamo/{id}": {
+      "delete": {
+        "summary": "Eliminar préstamo",
+        "tags": [
+          "prestamos"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "El ID del préstamo"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Préstamo eliminado"
+          },
+          "400": {
+            "description": "No se pudo eliminar"
+          }
+        }
+      }
+    },
+    "/actualizarPrestamo/{id}": {
+      "put": {
+        "summary": "Actualizar préstamo",
+        "tags": [
+          "prestamos"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "El ID del préstamo"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/prestamos"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Préstamo actualizado"
+          },
+          "400": {
+            "description": "No se pudo actualizar"
+          }
+        }
+      }
+    },
+    "/agregarReserva": {
+      "post": {
+        "summary": "Crear una reserva",
+        "tags": [
+          "reservas"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/reservas"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Nueva reserva creada!"
+          }
+        }
+      }
+    },
+    "/buscarReserva": {
+      "get": {
+        "summary": "Mostrar todas las reservas",
+        "tags": [
+          "reservas"
+        ],
+        "responses": {
+          "200": {
+            "description": "Reservas encontradas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/reservas"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/buscarReservaById/{id}": {
+      "get": {
+        "summary": "Buscar reserva por ID",
+        "tags": [
+          "reservas"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "El ID de la reserva"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reserva encontrada"
+          },
+          "404": {
+            "description": "Reserva no encontrada"
+          }
+        }
+      }
+    },
+    "/eliminarReserva/{id}": {
+      "delete": {
+        "summary": "Eliminar reserva",
+        "tags": [
+          "reservas"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "El ID de la reserva"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reserva eliminada"
+          },
+          "400": {
+            "description": "No se pudo eliminar"
+          }
+        }
+      }
+    },
+    "/actualizarReserva/{id}": {
+      "put": {
+        "summary": "Actualizar reserva",
+        "tags": [
+          "reservas"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "El ID de la reserva"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/reservas"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reserva actualizada"
+          },
+          "400": {
+            "description": "No se pudo actualizar"
+          }
+        }
+      }
+    },
+    "/registrarlibro": {
+      "post": {
+        "summary": "Crear un nuevo libro",
+        "tags": [
+          "libros"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/libros"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Nuevo libro creado!"
+          }
+        }
+      }
+    },
+    "/listarLibro": {
+      "get": {
+        "summary": "Mostrar todos los libros",
+        "tags": [
+          "libros"
+        ],
+        "responses": {
+          "200": {
+            "description": "Libros encontrados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/libros"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actualizarLibro/{id}": {
+      "put": {
+        "summary": "Actualizar libro",
+        "tags": [
+          "libros"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "El ID del libro"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/libros"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Libro actualizado"
+          },
+          "400": {
+            "description": "No se pudo actualizar"
+          }
+        }
+      }
+    },
+    "/eliminarL/{id}": {
+      "delete": {
+        "summary": "Eliminar libro",
+        "tags": [
+          "libros"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "El ID del libro"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Libro eliminado"
+          },
+          "400": {
+            "description": "No se pudo eliminar"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "socios": {
+        "type": "object",
+        "properties": {
+          "documento": {
+            "type": "string",
+            "description": "El documento del usuario"
+          },
+          "nombre": {
+            "type": "string",
+            "description": "El nombre del usuario"
+          },
+          "telefono": {
+            "type": "string",
+            "description": "El teléfono del usuario"
+          },
+          "direccion": {
+            "type": "string",
+            "description": "La dirección del usuario"
+          },
+          "reservas": {
+            "type": "string",
+            "description": "Reservas del usuario"
+          },
+          "prestamos": {
+            "type": "string",
+            "description": "Préstamos del usuario"
+          },
+          "multas": {
+            "type": "string",
+            "description": "Multas del usuario"
+          }
+        },
+        "required": [
+          "documento",
+          "nombre",
+          "telefono",
+          "direccion",
+          "reservas",
+          "prestamos",
+          "multas"
+        ],
+        "example": {
+          "documento": "1022385930",
+          "nombre": "Isabela",
+          "telefono": "3127336934",
+          "direccion": "la huerta",
+          "reservas": "1",
+          "prestamos": "1",
+          "multas": "0"
+        }
+      },
+      "editoriales": {
+        "type": "object",
+        "properties": {
+          "nombreEditorial": {
+            "type": "string",
+            "description": "El nombre de la editorial"
+          },
+          "direccion": {
+            "type": "string",
+            "description": "La dirección donde se encuentra"
+          },
+          "telefono": {
+            "type": "string",
+            "description": "El teléfono de la editorial"
+          }
+        },
+        "required": [
+          "nombreEditorial",
+          "telefono",
+          "direccion"
+        ],
+        "example": {
+          "nombreEditorial": "luz verde",
+          "telefono": "358392012",
+          "direccion": "el hueco"
+        }
+      },
+      "prestamos": {
+        "type": "object",
+        "properties": {
+          "fechaPrestamo": {
+            "type": "string",
+            "description": "Fecha del préstamo"
+          },
+          "fechaDevolucion": {
+            "type": "string",
+            "description": "Fecha de devolución"
+          },
+          "idBibliotecologo": {
+            "type": "string",
+            "description": "Bibliotecólogo a cargo"
+          },
+          "idUsuario": {
+            "type": "string",
+            "description": "Usuario que lo solicitó"
+          },
+          "idLibro": {
+            "type": "string",
+            "description": "Libro prestado"
+          },
+          "idMulta": {
+            "type": "string",
+            "description": "En caso de que tenga multa"
+          }
+        },
+        "required": [
+          "fechaPrestamo",
+          "fechaDevolucion",
+          "idBibliotecologo",
+          "idUsuario",
+          "idLibro",
+          "idMulta"
+        ],
+        "example": {
+          "fechaPrestamo": "2023-10-09",
+          "fechaDevolucion": "2023-10-26",
+          "idBibliotecologo": "12345678934",
+          "idUsuario": "12345678234",
+          "idLibro": "2345623456",
+          "idMulta": ""
+        }
+      },
+      "reservas": {
+        "type": "object",
+        "properties": {
+          "fechaReserva": {
+            "type": "string",
+            "description": "Fecha de la reserva"
+          },
+          "fechaRetiro": {
+            "type": "string",
+            "description": "Fecha de retiro"
+          },
+          "idUsuario": {
+            "type": "string",
+            "description": "Usuario que lo solicitó"
+          },
+          "idLibro": {
+            "type": "string",
+            "description": "Libro reservado"
+          }
+        },
+        "required": [
+          "fechaReserva",
+          "fechaRetiro",
+          "idUsuario",
+          "idLibro"
+        ],
+        "example": {
+          "fechaReserva": "2023-10-09",
+          "fechaRetiro": "2023-10-26",
+          "idUsuario": "12345678234",
+          "idLibro": "2345623456"
+        }
+      },
+      "libros": {
+        "type": "object",
+        "properties": {
+          "isbn": {
+            "type": "string",
+            "description": "ISBN del libro"
+          },
+          "titulo": {
+            "type": "string",
+            "description": "Título del libro"
+          },
+          "autor": {
+            "type": "string",
+            "description": "Autor del libro"
+          },
+          "editorial": {
+            "type": "string",
+            "description": "Editorial del libro"
+          },
+          "materias": {
+            "type": "array",
+            "description": "Lista de materias relacionadas al libro"
+          },
+          "fechaPublicacion": {
+            "type": "string",
+            "format": "date",
+            "description": "Fecha de publicación del libro"
+          },
+          "copiasDisponibles": {
+            "type": "integer",
+            "description": "Número de copias disponibles del libro"
+          },
+          "idioma": {
+            "type": "string",
+            "description": "Idioma del libro"
+          }
+        },
+        "example": {
+          "isbn": "978-0-13-235088-4",
+          "titulo": "Título de Muestra",
+          "autor": "ID del Autor",
+          "editorial": "ID de la Editorial",
+          "materias": [
+            "Materia 1",
+            "Materia 2"
+          ],
+          "fechaPublicacion": "2023-10-22",
+          "copiasDisponibles": 10,
+          "idioma": "ID del Idioma"
+        }
+      }
+    }
+  }
+}

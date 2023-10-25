@@ -10,22 +10,7 @@ const path = require('path');
 app.set('vies engine', 'ejs');
 app.set('views', path.join(__dirname, 'frontend/views/pages'));
 const swaggerUI = require('swagger-ui-express');
-const swaggerJsDoc = require('swagger-jsdoc');
-const swaggerSpec = {
-  definition: {
-    openapi: '3.0.0',
-    info: {
-      title: 'Biblioteca Publica Campiñas',
-      version: '1.0.0',
-    },
-    servers: [
-      {
-        url: 'http://localhost:7777',
-      },
-    ],
-  },
-  apis: [`${__dirname}/backend/routes/*.js`],
-};
+
 
 const contenido = 'Este es el contenido de mi nuevo documento';
 fs.writeFile('./backend/files/logs/nuevo_documento.txt', contenido, (error) =>{
@@ -37,9 +22,11 @@ fs.writeFile('./backend/files/logs/nuevo_documento.txt', contenido, (error) =>{
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
-
+// Define la ruta al archivo JSON de definición de OpenAPI
+const swaggerDocument = require('./BPC.json'); // Asegúrate de que el nombre del archivo sea correcto
 // se necesita para que analice los req entrantes es decir las peticiones
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.listen(PORT, () => {
   console.log(`Estoy en linea desde el puerto: ${PORT}`);
 });
