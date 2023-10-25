@@ -1,29 +1,103 @@
 const PrestamosModel = require('../../models/prestamos.model');
 
 
+
+
 exports.guardarPrestamo = async (datos) => {
   try {
-    const prestamoGuardar = await new PrestamosModel(datos).save();
-    if (prestamoGuardar) {
-      return {
-        respuesta: true,
-        Prestamo: prestamoGuardar,
-      };
+    const prestamoUnido = await PrestamosModel.aggregate([
+      {
+        $lookup: {
+          from: 'bibliotecologos',
+          localField: 'idBibliotecologo',
+          foreignField: '_id',
+          as: 'bibliotecologo',
+        }
+      },
+      {
+        $lookup: {
+          from: 'usuarios',
+          localField: 'idUsuario',
+          foreignField: '_id',
+          as: 'usuario',
+        }
+      },
+      {
+        $lookup: {
+          from: 'libros',
+          localField: 'idLibro',
+          foreignField: '_id',
+          as: 'libro',
+        }
+      },
+      {
+        $lookup: {
+          from: 'multas',
+          localField: 'idMulta',
+          foreignField: '_id',
+          as: 'multa',
+        }
+      },
+      {
+        $addFields: {
+          bibliotecologo: { $arrayElemAt: ['$bibliotecologo', 0] },
+          usuario: { $arrayElemAt: ['$usuario', 0] },
+          libro: { $arrayElemAt: ['$libro', 0] },
+          multa: { $arrayElemAt: ['$multa', 0] },
+        }
+      },
+    ]);
+
+    if (prestamoUnido) {
+      const prestamoGuardar = await new PrestamosModel(prestamoUnido[0]).save();
+      if (prestamoGuardar) {
+        return {
+          respuesta: true,
+          Prestamo: prestamoGuardar,
+        };
+      } else {
+        return {
+          respuesta: false,
+          mensaje: 'No se pudo registrar el préstamo',
+        };
+      }
     } else {
       return {
         respuesta: false,
-        mensaje: 'No se pudo registrar el prestamo',
+        mensaje: 'No se pudo unir la información necesaria para el préstamo',
       };
     }
   } catch (err) {
     return err;
   }
 };
+// exports.guardarPrestamo = async (datos) => {
+//   try {
+//     const prestamoGuardar = await new PrestamosModel(datos).save();
+//     if (prestamoGuardar) {
+//       return {
+//         respuesta: true,
+//         Prestamo: prestamoGuardar,
+//       };
+//     } else {
+//       return {
+//         respuesta: false,
+//         mensaje: 'No se pudo registrar el prestamo',
+//       };
+//     }
+//   } catch (err) {
+//     return err;
+//   }
+// };
 
 
 exports.buscarPrestamos = async () => {
   try {
-    const buscarPrestamos = await PrestamosModel.find();
+    const buscarPrestamos = await PrestamosModel.find({}, function (err, libros) {
+      Autor.populate(libros, { path: "autor" }, function (err, libros) {
+        res.status(200).send(libros);
+      });
+    });
     if (buscarPrestamos) {
       return buscarPrestamos;
     } else {
@@ -36,6 +110,7 @@ exports.buscarPrestamos = async () => {
     return err;
   }
 };
+
 
 exports.verPrestamoById = async (id) => {
   try {

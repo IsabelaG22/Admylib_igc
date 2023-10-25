@@ -1,5 +1,5 @@
 const mongoose = require('../config/database');
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 
 const PrestamoSchema = new mongoose.Schema({
@@ -12,10 +12,13 @@ const PrestamoSchema = new mongoose.Schema({
     required: [true, 'Ingresa fecha devolución prestamo'],
   },
   idBibliotecologo: {
-    type: Schema.ObjectId,
-    ref: 'bibliotecologos',
+    type: [{
+      type: Schema.ObjectId,
+      ref: 'bibliotecologos',
+    }],
     required: [true, 'Ingresa Bibliotecologo encargado del prestamo'],
   },
+
   idUsuario: {
     type: Schema.ObjectId,
     ref: 'socios',
@@ -32,5 +35,5 @@ const PrestamoSchema = new mongoose.Schema({
   },
 });
 
-const Prestamos =mongoose.model('prestamos', PrestamoSchema);
+const Prestamos = mongoose.model('prestamos', PrestamoSchema);
 module.exports = Prestamos;

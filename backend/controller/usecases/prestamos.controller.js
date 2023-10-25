@@ -1,19 +1,43 @@
 const DataPrestamos = require('../data-access/prestamos.controller');
 
-
 exports.guardarPrestamo = async (req, res) => {
   try {
-    const datos = req.body;
-    const nuevoPrestamo = await DataPrestamos.guardarPrestamo(datos);
+    // Los ObjectIDs se envían en el cuerpo de la solicitud (req.body)
+    const prestamoData = {
+      fechaPrestamo: req.body.fechaPrestamo,
+      fechaDevolucion: req.body.fechaDevolucion,
+      idBibliotecologo: req.body.idBibliotecologo,
+      idUsuario: req.body.idUsuario,
+      idLibro: req.body.idLibro,
+      idMulta: req.body.idMulta,
+      
+    };
+
+    const nuevoPrestamo = await   DataPrestamos.guardarPrestamo(prestamoData);
+
     if (nuevoPrestamo.respuesta === false) {
-      res.status(404).json({error: 'No se registro el prestamo'});
+      res.status(404).json({ error: 'No se registró el préstamo' });
     } else {
-      res.status(200).json({Prestamo: nuevoPrestamo});
+      res.status(200).json({ Prestamo: nuevoPrestamo });
     }
   } catch (err) {
-    res.status(500).json({error: err});
+    res.status(500).json({ error: err });
   }
 };
+
+// exports.guardarPrestamo = async (req, res) => {
+//   try {
+//     const datos = req.body;
+//     const nuevoPrestamo = await DataPrestamos.guardarPrestamo(datos);
+//     if (nuevoPrestamo.respuesta === false) {
+//       res.status(404).json({error: 'No se registro el prestamo'});
+//     } else {
+//       res.status(200).json({Prestamo: nuevoPrestamo});
+//     }
+//   } catch (err) {
+//     res.status(500).json({error: err});
+//   }
+// };
 
 
 exports.buscarPrestamos = async (req, res) => {
@@ -71,4 +95,5 @@ exports.actualizarPrestamo = async (req, res) => {
     res.status(500).json({error: err});
   }
 };
+
 
