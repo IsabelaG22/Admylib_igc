@@ -9,19 +9,18 @@ exports.guardarPrestamo = async (req, res) => {
       idBibliotecologo: req.body.idBibliotecologo,
       idUsuario: req.body.idUsuario,
       idLibro: req.body.idLibro,
-      idMulta: req.body.idMulta,
-      
+
     };
 
-    const nuevoPrestamo = await   DataPrestamos.guardarPrestamo(prestamoData);
+    const nuevoPrestamo = await DataPrestamos.guardarPrestamo(prestamoData);
 
     if (nuevoPrestamo.respuesta === false) {
-      res.status(404).json({ error: 'No se registró el préstamo' });
+      res.status(404).json({error: 'No se registró el préstamo'});
     } else {
-      res.status(200).json({ Prestamo: nuevoPrestamo });
+      res.status(200).json({Prestamo: nuevoPrestamo});
     }
   } catch (err) {
-    res.status(500).json({ error: err });
+    res.status(500).json({error: err});
   }
 };
 
@@ -55,12 +54,12 @@ exports.buscarPrestamos = async (req, res) => {
 
 exports.buscarPrestamoById = async (req, res)=>{
   try {
-    const ById = req.body.idUsuario;
-    const busquedaPrestamo = await DataPrestamos.verPrestamoById(ById);
+    const id = req.params.id;
+    const busquedaPrestamo = await DataPrestamos.verPrestamoById(id);
     if (busquedaPrestamo.respuesta === false) {
       res.status(404).json({error: 'No se encontraro el prestamo'});
     } else {
-      res.status(200).json({Prestamo: busquedaPrestamo});
+      res.status(200).json(busquedaPrestamo);
     }
   } catch (err) {
     res.status(500).json({error: err});

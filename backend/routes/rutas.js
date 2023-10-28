@@ -1,4 +1,4 @@
-const funcionesSocio = require('../controller/usecases/socios.controller');
+const funcionesSocio = require('../controller/usecases/usuarios.controller');
 const funcionesEditoriales = require('../controller/usecases/editoriales.controller');
 const funcionesPrestamos = require('../controller/usecases/prestamos.controller');
 const funcionesReserva = require('../controller/usecases/reservas.controller');
@@ -7,7 +7,13 @@ const libros = require('../controller/usecases/libros.controller');
 const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
+// FORMULARIOS -----------------------------------------------------------------------------------------
 router.get('/index', funcionesSocio.index);
+router.get('/fEditoriales', funcionesSocio.formularioEditoriales);
+router.get('/fPrestamos', funcionesSocio.formularioPrestamos);
+router.get('/fReservas', funcionesSocio.formularioReservas);
+router.get('/fUsuarios', funcionesSocio.formularioUsuarios);
+
 
 // SOCIOS --------------------------------------------------------------------------------------------------
 router.post('/agregarSocio', funcionesSocio.guardar);
@@ -40,7 +46,6 @@ router.delete('/eliminarReserva/:id', funcionesReserva.eliminarReserva);
 
 
 // MODULO LIBROS------------------------------------------------------------------------------------------------------
-
 
 
 router.post('/registrarlibro', libros.creaLibros);

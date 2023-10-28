@@ -1,4 +1,4 @@
-const SociosModel = require('../../models/socios.model');
+const SociosModel = require('../../models/usuarios.model');
 
 
 exports.guardar = async (datos) => {
@@ -22,6 +22,7 @@ exports.guardar = async (datos) => {
 
 exports.buscar = async (_filtros, _opciones) => {
   try {
+    console.log(_filtros);
     const sociosBuscar = await SociosModel.find(_filtros, _opciones);
     if (sociosBuscar) {
       return sociosBuscar;

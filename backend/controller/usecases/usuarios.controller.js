@@ -1,4 +1,4 @@
-const dataSocio = require('../data-access/socios.controller');
+const dataSocio = require('../data-access/usuarios.controller');
 
 exports.guardar = async (req, res) => {
   try {
@@ -17,11 +17,12 @@ exports.guardar = async (req, res) => {
 exports.buscar = async (req, res) => {
   try {
     // const nombre = {nombre: req.body.nombre};
-    const busquedaSocio = await dataSocio.buscar();
-    if (busquedaSocio.respuesta === false) {
+    const busquedaSocio = await dataSocio.buscar({}, {},
+    );
+    if (!busquedaSocio) {
       res.status(404).json({error: 'No se encontro el socio'});
     } else {
-      res.status(200).json({busquedaSocio});
+      res.status(200).json(busquedaSocio);
     }
   } catch (err) {
     res.status(500).json({error: err});
@@ -60,3 +61,21 @@ exports.actualizar = async (req, res) => {
 exports.index = (req, res) => {
   res.render('index.ejs');
 };
+
+exports.formularioEditoriales = (req, res) =>{
+  res.render('formularioEditoriales.ejs');
+};
+
+exports.formularioUsuarios = (req, res)=>{
+  res.render('formularioUsuarios.ejs');
+};
+
+exports.formularioPrestamos = (req, res)=>{
+  res.render('formularioPrestamos.ejs');
+};
+
+exports.formularioReservas = (req, res)=>{
+  res.render('formularioReservas.ejs');
+};
+
+

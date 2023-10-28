@@ -27,7 +27,6 @@ exports.buscarLibro = async (filter) => {
   }
 };
 
-
 exports.updatelibros = async (id, data) => {
   try {
     const updatelibros = await Libros.findOneAndUpdate(id, data);

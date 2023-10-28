@@ -38,6 +38,20 @@ const SociosSchema = new mongoose.Schema({
     maxlength: 100,
     required: [true, 'Debe ingresar multas'],
   },
+  correoElectronico: {
+    type: String,
+    required: [true, 'Ingresar el correo ELetronico  es obligatorio'],
+  },
+  password: {
+    type: String,
+    required: [true, 'Ingresar una contraseña es obligatorio'],
+
+  },
+  rol: {
+    type: String,
+    required: [true, 'es necesario un rol'],
+  },
+
 });
 
 const socios = mongoose.model('socios', SociosSchema);

@@ -39,6 +39,11 @@ const LibrosSchema = new mongoose.Schema({
     ref: 'idiomas',
     required: [true, 'Referencia al idioma en que está el libro'],
   },
+  estado: {
+    type: String,
+    require: [true, 'Debes agregar el estado del libro'],
+    default: 'libre',
+  },
 });
 
 const libros = mongoose.model('libros', LibrosSchema);

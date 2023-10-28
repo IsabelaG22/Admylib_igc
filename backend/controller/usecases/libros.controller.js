@@ -7,7 +7,7 @@ exports.creaLibros = async (req, res) => {
 
   const nuevoLibro = libros.createLibros(datos);
 
-  res.status(200).json({ resultado: nuevoLibro });
+  res.status(200).json({resultado: nuevoLibro});
 };
 
 exports.find = async (req, res) => {
@@ -19,12 +19,12 @@ exports.find = async (req, res) => {
     });
 
     if (buscarLibro.respuesta === false) {
-      res.status(404).json({ resultado: 'no existe ningun libro' });
+      res.status(404).json({resultado: 'no existe ningun libro'});
     } else {
-      res.status(200).json({ libros: buscarLibro });
+      res.status(200).json({libros: buscarLibro});
     }
   } catch (e) {
-    res.status(500).json({ error: e });
+    res.status(500).json({error: e});
   }
   console.log(libros);
 };
@@ -32,7 +32,7 @@ exports.find = async (req, res) => {
 
 exports.update = async (req, res) => {
   try {
-    const id = { _id: req.params.id };
+    const id = {_id: req.params.id};
     const datos = {
       Isbn: req.body.Isbn,
       titulo: req.body.titulo,
@@ -44,13 +44,13 @@ exports.update = async (req, res) => {
       idioma: req.body.idioma,
     };
     if (id.respuesta === false) {
-      res.status(404).json({ resultado: 'no se actualizo' });
+      res.status(404).json({resultado: 'no se actualizo'});
     } else {
       await libros.updatelibros(id, datos);
-      res.status(200).json({ libros: 'se actualizo correctamente' });
+      res.status(200).json({libros: 'se actualizo correctamente'});
     }
   } catch (e) {
-    res.status(500).json({ error: e });
+    res.status(500).json({error: e});
   }
 };
 
@@ -58,12 +58,13 @@ exports.eliminarL = async (req, res) => {
   try {
     const id = req.params.id;
     if (id.respuesta === false) {
-      res.status(404).json({ respuesta: 'no encuentro el id' });
+      res.status(404).json({respuesta: 'no encuentro el id'});
     } else {
-      await libros.eliminarLibro({ _id: id });
-      res.status(200).json({ libros: 'se elimino  correctamente' });
+      await libros.eliminarLibro({_id: id});
+      res.status(200).json({libros: 'se elimino  correctamente'});
     }
   } catch (e) {
-    res.status(500).json({ error: e });
+    res.status(500).json({error: e});
   }
 };
+
